@@ -1,5 +1,6 @@
 // Require all libraries
 var appRoot = require('app-root-path');
+var fs = require('fs');
 const path = require('path');
 const config = require(path.join(appRoot.path,'private/config/config'));
 
@@ -8,7 +9,11 @@ const resumeParser = require(config.libraryPaths.resumeParser);
 const structureEval = require(config.libraryPaths.structureChecker);
 const contentEval = require(config.libraryPaths.contentChecker);
 
-async function main(uploadedFilePath){
+async function main(uploadedFilePath, documentExtension){
+
+    // Rename the uploaded file with the proper extension
+    uploadedFilePath = await renameFile(uploadedFilePath,documentExtension);
+
     // Store json resume
     let resume = await getResumeObj(uploadedFilePath);
 
@@ -37,7 +42,22 @@ async function getResumeObj(documentFilePath){
     
 }
 
-let testFilePath = path.join(appRoot.path,'private/uploads/afc666dd097b19dce4f23e7a90f58653.docx');
-main(testFilePath);
+// Rename the uploaded file to the proper file format
+async function renameFile(uploadedFilePath, documentExtension){
+    return new Promise(function(resolve, reject){
+        fs.rename(uploadedFilePath, uploadedFilePath + '.' + documentExtension, function(err) {
+            if (err){
+                console.log(err);
+                resolve(false);
+            }
+            else{
+                resolve(uploadedFilePath + '.' + documentExtension);
+            }
+        });
+    })
+}
+
+// let testFilePath = path.join(appRoot.path,'private/uploads/afc666dd097b19dce4f23e7a90f58653.docx');
+// main(testFilePath);
 
 module.exports = main;
