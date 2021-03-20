@@ -6,7 +6,7 @@ const config = require(path.join(appRoot.path,'private/config/config'));
 // Helper functions
 const resumeParser = require(config.libraryPaths.resumeParser);
 const structureEval = "";
-const contentEval = "";
+const contentEval = require(config.libraryPaths.contentChecker);
 const correctEval = "";
 
 async function main(uploadedFilePath){
@@ -36,7 +36,8 @@ async function getResumeObj(documentFilePath){
     
 }
 
-let testFilePath = path.join(appRoot.path,'private/uploads/afc666dd097b19dce4f23e7a90f58653.docx');
+let testFilePath = path.join(appRoot.path,'private/uploads/Resume_Lukas_VanTilburg_EA_Games.pdf');
+// let testFilePath = path.join(appRoot.path,'private/uploads/afc666dd097b19dce4f23e7a90f58653.docx');
 main(testFilePath);
 
 module.exports = main;

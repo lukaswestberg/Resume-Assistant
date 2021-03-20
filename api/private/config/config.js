@@ -7,7 +7,8 @@ const config = {
         parsedFilePath: path.join(appRoot.path,'private/parsed'),
     },
     libraryPaths: {
-        resumeParser: path.join(appRoot.path,'private/lib/resume_parser-master/src/')
+        resumeParser: path.join(appRoot.path,'private/lib/resume_parser-master/src/'),
+        contentChecker: path.join(appRoot.path,'private/lib/parser/contentChecker')
     }
 }
 

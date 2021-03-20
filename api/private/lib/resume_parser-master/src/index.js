@@ -19,7 +19,6 @@ const parseFile = (preppedFile) => {
   const rawFileData = preppedFile.raw;
   const resume = new Resume();
   let rows = rawFileData.split("\n");
-  console.log(rows);
 
   parseDictionaryRegular(rawFileData, resume);
   rows.forEach((row, i) => {

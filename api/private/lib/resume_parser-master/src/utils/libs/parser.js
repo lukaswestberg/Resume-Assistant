@@ -112,6 +112,7 @@ function parseDictionaryRegular(data, Resume) {
   var regularDictionary = dictionary.regular,
     find;
 
+
   _.forEach(regularDictionary, function(expressions, key) {
     _.forEach(expressions, function(expression) {
       find = new RegExp(expression).exec(data);
