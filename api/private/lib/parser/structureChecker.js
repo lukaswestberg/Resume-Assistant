@@ -1,14 +1,15 @@
 function evaluateStructure(resumeObj, output) {
+    
     if (resumeObj.getName()) {
-        evaluateStructure.name = resumeObj.getName();
+        output.name = resumeObj.getName();
     } else {
-        evaluateStructure.name = "";
+        output.name = "";
     }
 
     if (resumeObj.getEmail()) {
-        evaluateStructure.email = resumeObj.getEmail();
+        output.email = resumeObj.getEmail();
     } else {
-        evaluateStructure.email = "No name found.";
+        output.email = "No name found.";
     }
 
 
