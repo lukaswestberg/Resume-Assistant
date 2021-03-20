@@ -36,7 +36,6 @@ class Resume {
   };
 
   getName = () => {
-    console.log(this.parts);
     return this.parts.name;
   };
 
