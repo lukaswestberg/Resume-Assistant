@@ -110,14 +110,18 @@ function parseDictionaryInline(Resume, row) {
  */
 function parseDictionaryRegular(data, Resume) {
   var regularDictionary = dictionary.regular,
+    exprEval,
     find;
 
   _.forEach(regularDictionary, function(expressions, key) {
     _.forEach(expressions, function(expression) {
-      find = new RegExp(expression).exec(data);
+      exprEval = new RegExp(expression);
+      find = exprEval.exec(data);
+
       if (find) {
         Resume.addKey(key.toLowerCase(), find[0]);
       }
+
     });
   });
 }
