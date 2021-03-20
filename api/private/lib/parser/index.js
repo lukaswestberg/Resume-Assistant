@@ -5,24 +5,20 @@ const config = require(path.join(appRoot.path,'private/config/config'));
 
 // Helper functions
 const resumeParser = require(config.libraryPaths.resumeParser);
-const structureEval = "";
+const structureEval = require(config.libraryPaths.structureChecker);
 const contentEval = require(config.libraryPaths.contentChecker);
-const correctEval = "";
 
 async function main(uploadedFilePath){
-    let evaluation = {};
-
     // Store json resume
     let resume = await getResumeObj(uploadedFilePath);
-    
+
+    let evaluation = {};
+
     // Structure eval
-    evaluation.structure = "Good Structure!";
+    structureEval(resume, evaluation);
 
     // Content eval
-    evaluation.content = "Good Content!";
-
-    // Correctness eval
-    evaluation.correctness = "Good Correctness!";
+    contentEval(resume, evaluation);
 
     return evaluation;
 }
@@ -41,7 +37,7 @@ async function getResumeObj(documentFilePath){
     
 }
 
-// let testFilePath = path.join(appRoot.path,'private/uploads/afc666dd097b19dce4f23e7a90f58653.docx');
-// main(testFilePath);
+let testFilePath = path.join(appRoot.path,'private/uploads/afc666dd097b19dce4f23e7a90f58653.docx');
+main(testFilePath);
 
 module.exports = main;
