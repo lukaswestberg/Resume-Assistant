@@ -10,16 +10,21 @@ const contentEval = require(config.libraryPaths.contentChecker);
 const correctEval = "";
 
 async function main(uploadedFilePath){
+    let evaluation = {};
+
     // Store json resume
     let resume = await getResumeObj(uploadedFilePath);
-
-    console.log(resume.getName());
     
     // Structure eval
-    
+    evaluation.structure = "Good Structure!";
+
     // Content eval
+    evaluation.content = "Good Content!";
 
     // Correctness eval
+    evaluation.correctness = "Good Correctness!";
+
+    return evaluation;
 }
 
 // Convert the uploaded file to a json containing the key points of the resume
@@ -36,8 +41,7 @@ async function getResumeObj(documentFilePath){
     
 }
 
-let testFilePath = path.join(appRoot.path,'private/uploads/Resume_Lukas_VanTilburg_EA_Games.pdf');
 // let testFilePath = path.join(appRoot.path,'private/uploads/afc666dd097b19dce4f23e7a90f58653.docx');
-main(testFilePath);
+// main(testFilePath);
 
 module.exports = main;
