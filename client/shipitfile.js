@@ -9,13 +9,15 @@ module.exports = shipit => {
 
     shipit.initConfig({
         default: {
-            deployTo: '/home/henry/ra-client',
+            workspace: '/tmp/github-monitor',
+            deployTo: `~/apps/${appName}`,
             repositoryUrl: 'https://github.com/lukaswestberg/Resume-Assistant.git',
-            keepReleases: 5,
+            keepReleases: 2,
             shared: {
                 overwrite: true,
                 dirs: ['node_modules']
-            }
+            },
+            branch: 'main',
         },
         production: {
             servers: 'henry@rastaging01.aptlogic.xyz'
@@ -23,23 +25,22 @@ module.exports = shipit => {
     });
 
     // Our listeners and tasks will go here
-    shipit.on('updated', async () => {
-        shipit.start('yarn-install', 'copy-config');
-    });
-
-    shipit.on('published', async () => {
-        shipit.start('pm2-server');
-    });
-
-    shipit.blTask('yarn-install', async () => {
-        shipit.remote(`cd ${shipit.releasePath} && yarn add --production`);
-    });
-
-    shipit.blTask('pm2-server', async () => {
-        await shipit.remote(`pm2 delete -s ${appName} || :`);
-        await shipit.remote(
-            `react-scripts build`
-            `pm2 serve build 8082 --spa --name ${appName} --watch true`
-        );
-    });
+    shipit.task('start', function() {
+        shipit.log('Installing...');
+        let promise1 = shipit.remote(`cd ~/apps/${appName}/client && yarn`);
+        let promise2 = promise1.then(function(res) {
+            shipit.log('Building...');
+            shipit.remote(`cd ~/apps/${appName}/client && react-scripts build`);
+        });
+        promise2.then(function(res) {
+            shipit.log('Cleaning up...');
+            shipit.remote(
+                `pm2 delete -s ${appName} || :`
+            )
+            shipit.log('Starting...');
+            shipit.remote(
+                `~/apps/${appName}/client && pm2 serve build 8082 --spa --name ${appName} --watch true`
+            );
+        });
+    })
 };
