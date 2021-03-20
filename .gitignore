@@ -108,3 +108,11 @@ dist
 api/private/uploads/
 api/public/thumbnails/
 
+# Package locks
+api/yarn.lock
+client/yarn.lock
+package-lock.json
+yarn.lock
+
+
+
