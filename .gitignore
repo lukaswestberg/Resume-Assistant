@@ -106,3 +106,5 @@ dist
 
 # Uploaded files
 api/private/uploads/
+api/public/thumbnails/
+
