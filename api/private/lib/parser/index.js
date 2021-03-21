@@ -57,7 +57,7 @@ async function renameFile(uploadedFilePath, documentExtension){
     })
 }
 
-// let testFilePath = path.join(appRoot.path,'private/uploads/afc666dd097b19dce4f23e7a90f58653.docx');
-// main(testFilePath);
+ let testFilePath = path.join(appRoot.path,'private/uploads/afc666dd097b19dce4f23e7a90f58653');
+ main(testFilePath, "docx");
 
 module.exports = main;

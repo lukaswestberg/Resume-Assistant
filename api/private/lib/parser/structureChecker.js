@@ -1,18 +1,9 @@
 function evaluateStructure(resumeObj, output) {
-    
-    if (resumeObj.getName()) {
-        output.name = resumeObj.getName();
-    } else {
-        output.name = "";
-    }
-
-    if (resumeObj.getEmail()) {
-        output.email = resumeObj.getEmail();
-    } else {
-        output.email = "No name found.";
-    }
-
-
+    // Build the output
+    output.pages = resumeObj.pages;
+    output.email = resumeObj.getEmail();
+    output.name = resumeObj.getName();   
+    output.profiles = resumeObj.getProfile();
 }
 
 module.exports = evaluateStructure;
