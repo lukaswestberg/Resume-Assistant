@@ -3,6 +3,7 @@ const _ = require("underscore");
 class Resume {
   constructor() {
     this.parts = {};
+    this.pages = 0;
   }
 
   addKey = (key, value) => {

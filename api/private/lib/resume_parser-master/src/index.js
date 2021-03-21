@@ -26,6 +26,15 @@ const parseFile = (preppedFile) => {
     parseDictionaryTitles(resume, rows, i);
     parseDictionaryInline(resume, row);
   });
+
+  if(preppedFile.pages != undefined){
+    resume.pages = preppedFile.pages;
+  }
+  else{
+    resume.pages = 0;
+  }
+  
+
   return resume;
 };
 

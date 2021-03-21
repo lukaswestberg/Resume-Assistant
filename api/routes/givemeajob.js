@@ -1,6 +1,15 @@
+// Express requires
 var express = require('express');
 var router = express.Router();
+
+// Required libraries and config
 var appRoot = require('app-root-path');
+const path = require('path');
+const config = require(path.join(appRoot.path,'private/config/config'));
+
+// Required helper functions from config
+const resumeChecker = require(config.libraryPaths.resumeChecker);
+
 
 router.post('/', function(req, res, next) {
     // Create response
@@ -29,12 +38,17 @@ router.post('/', function(req, res, next) {
         res.end(JSON.stringify(response));
     }
 
-    // Depending on the type of file, parse it accordingly
+    // Create the filepath string to pass to helper functions
+    let uploadedFilePath = path.join(config.filePaths.uploadPath,req.files[0].filename);
 
+    // Run the resume checker
+    resumeChecker(uploadedFilePath,response.doctype).then(evaluation => {
+        response.evaluation = evaluation;
 
-    // End Request
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(response));
+        // End Request
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(response));
+    })
 });
 
 module.exports = router;
