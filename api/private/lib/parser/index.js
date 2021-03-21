@@ -57,7 +57,14 @@ async function renameFile(uploadedFilePath, documentExtension){
     })
 }
 
-// let testFilePath = path.join(appRoot.path,'private/uploads/afc666dd097b19dce4f23e7a90f58653.docx');
-// main(testFilePath);
+<<<<<<< HEAD
+// let testFilePath = path.join(appRoot.path,'private/uploads/Resume_Lukas_VanTilburg_EA_Games');
+// main(testFilePath,'pdf').then(evaluation => {
+//     console.log(evaluation);
+// });
+=======
+ let testFilePath = path.join(appRoot.path,'private/uploads/afc666dd097b19dce4f23e7a90f58653');
+ main(testFilePath, "docx");
+>>>>>>> 9bfbf2fba346fc8ae202c1a9660800cb3524b344
 
 module.exports = main;

@@ -7,19 +7,28 @@
   },
   "dependencies": {
     "app-root-path": "^3.0.0",
+    "chokidar": "^3.5.1",
     "cookie-parser": "~1.4.4",
+    "csvtojson": "^2.0.10",
     "debug": "~2.6.9",
     "docx4js": "^3.2.16",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "jest": "^26.6.3",
     "morgan": "~1.9.1",
     "multer": "^1.4.2",
+    "office-document-properties": "^1.1.0",
     "officeparser": "^2.2.2",
     "path": "^0.12.7",
+    "pdf-page-counter": "^1.0.3",
     "pdf-parse": "^1.1.1",
     "pdf2html": "^2.5.2",
     "resume-parser": "^1.1.0",
+    "string-cosine-similarity": "^2.0.1",
     "word-to-html": "^2.2.6"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
   }
 }
