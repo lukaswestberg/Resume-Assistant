@@ -23,7 +23,7 @@ class Extract {
 
     if (this.mime == "application/pdf") {
       let pageBuffer = fs.readFileSync(this.path)
-      this.pages = await pdfPages(pageBuffer);
+      this.pages = await pdfPages(pageBuffer).numpages;
     } else if (this.mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
       this.pages = await this.getPagesWord();
     } else {
