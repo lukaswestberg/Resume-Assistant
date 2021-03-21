@@ -1,6 +1,5 @@
 function evaluateStructure(resumeObj, output) {
-<<<<<<< HEAD
-    
+
     // Personal information
     if (resumeObj.getName()) {
         output.name = resumeObj.getName();
